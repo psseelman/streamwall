@@ -162,6 +162,29 @@ const viewStateMachine = Machine(
                   blurred: {},
                 },
               },
+              rotation: {
+                initial: '0',
+                on: {
+                  0: '.0',
+                  90: '.90',
+                  180: '.180',
+                  270: '.270',
+                },
+                states: {
+                  0: {
+                    entry: 'rotateTo0',
+                  },
+                  90: {
+                    entry: 'rotateTo90',
+                  },
+                  180: {
+                    entry: 'rotateTo180',
+                  },
+                  270: {
+                    entry: 'rotateTo270',
+                  },
+                },
+              },
             },
           },
           error: {
@@ -181,6 +204,18 @@ const viewStateMachine = Machine(
       },
       unmuteAudio: (context, event) => {
         context.view.webContents.audioMuted = false
+      },
+      rotateTo0: (context, event) => {
+        
+      },
+      rotateTo90: (context, event) => {
+        
+      },
+      rotateTo180: (context, event) => {
+        
+      },
+      rotateTo270: (context, event) => {
+        
       },
       openDevTools: (context, event) => {
         const { view } = context

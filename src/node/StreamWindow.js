@@ -1,7 +1,7 @@
 import isEqual from 'lodash/isEqual'
 import intersection from 'lodash/intersection'
 import EventEmitter from 'events'
-import { BrowserView, BrowserWindow, ipcMain } from 'electron'
+import { BrowserView, BrowserWindow, ipcMain, screen } from 'electron'
 import { interpret } from 'xstate'
 
 import viewStateMachine from './viewStateMachine'
@@ -90,7 +90,7 @@ export default class StreamWindow extends EventEmitter {
     overlayView.setBounds({
       x: 0,
       y: 0,
-      width,
+      width * screen.getPrimaryDisplay().w,
       height,
     })
     overlayView.webContents.loadFile('overlay.html')
@@ -266,6 +266,11 @@ export default class StreamWindow extends EventEmitter {
 
   openDevTools(viewIdx, inWebContents) {
     this.sendViewEvent(viewIdx, { type: 'DEVTOOLS', inWebContents })
+  }
+
+  rotateView(viewIdx, degrees) {
+    
+    this.sendViewEvent(viewIdx, )
   }
 
   send(...args) {
